@@ -10,6 +10,12 @@ const Main = () => {
   const [dataForecast, setDataForecast] = useState('')
   const [favouriteCities, setFavouriteCities] = useState([])
 
+  // var cookies = document.cookie.split(/;/);
+  // for (var i = 0, len = cookies.length; i < len; i++) {
+  //   var cookie = cookies[i].split(/=/);
+  //   document.cookie = cookie[0] + "=;max-age=-1";
+  // }
+
   return (
     <main className="main">
       <div className="container">
@@ -25,6 +31,8 @@ const Main = () => {
           <div className="forest__body">
 
             <Tabs
+              setDataCity={setDataCity}
+              setDataForecast={setDataForecast}
               dataCity={dataCity}
               dataForecast={dataForecast}
               setFavouriteCities={setFavouriteCities}

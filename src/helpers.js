@@ -1,5 +1,5 @@
 const FIRST_CITY = {
-  name: 'Aktobe',
+  name: 'Nizhny Novgorod',
   temp: 7,
 }
 

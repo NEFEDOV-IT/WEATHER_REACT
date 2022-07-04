@@ -1,4 +1,5 @@
-import { getCityForecast, getForecast } from "../../helpers";
+import { FIRST_CITY, getCityForecast, getForecast } from "../../helpers";
+import JsCookie from "js-cookie";
 
 const ShowFavouriteCities = ({
                                city,
@@ -11,13 +12,16 @@ const ShowFavouriteCities = ({
   function removeCity(e) {
     const currentCities = favouriteCities.filter(item => item !== e.target.value)
     setFavouriteCities(currentCities)
+    JsCookie.set('arrayCity', JSON.stringify(currentCities))
+    JsCookie.set('city', JSON.stringify(currentCities[0] || FIRST_CITY.name))
   }
 
-  async function showForecast(e) {
-    const data = await getCityForecast(e.target.innerText)
-    const dataForecast = await getForecast(e.target.innerText)
+  async function showForecast() {
+    const data = await getCityForecast(city)
+    const dataForecast = await getForecast(city)
     setDataCity(data)
     setDataForecast(dataForecast)
+    JsCookie.set('city', JSON.stringify(city))
   }
 
   return (

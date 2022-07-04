@@ -5,7 +5,7 @@ import { Details } from "./Details/Details";
 import { Forecast } from "./Forecast/Forecast";
 import { NavigationTab } from "./NavigationTab/NavigationTab";
 
-const Tabs = ({dataCity, dataForecast, setFavouriteCities, favouriteCities}) => {
+const Tabs = ({dataCity, dataForecast, setFavouriteCities, favouriteCities, setDataCity, setDataForecast}) => {
   const [active, setActive] = useState('Now')
 
   return (
@@ -18,6 +18,8 @@ const Tabs = ({dataCity, dataForecast, setFavouriteCities, favouriteCities}) => 
             dataCity={dataCity}
             setFavouriteCities={setFavouriteCities}
             favouriteCities={favouriteCities}
+            setDataCity={setDataCity}
+            setDataForecast={setDataForecast}
           />
           <Details
             active={active}
