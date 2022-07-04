@@ -1,0 +1,35 @@
+.main {
+  background: url("../../img/back.jpg") no-repeat center/cover;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 620px) {
+    padding-top: 20px;
+  }
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.weather__forest{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 600px;
+  margin: 0 auto;
+  @media screen and (max-width: 620px) {
+    width: 300px;
+  }
+}
+
+.forest__body{
+  display: flex;
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+}

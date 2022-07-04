@@ -1,0 +1,13 @@
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #0c0150d9;
+  & a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    &:visited {
+      color: #fff;
+    }
+  }
+}

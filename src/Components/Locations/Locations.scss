@@ -1,0 +1,43 @@
+.forest__body-location {
+  background: rgba(0,0,0,0.08);
+  font-size: 24px;
+  line-height: 28px;
+  border-right: 1px solid #000;
+  border-radius: 0 0 10px 0;
+  border-bottom: 1px solid #000;
+  @media screen and (max-width: 620px) {
+    border-left: 1px solid #000;
+    border-radius: 0 0 10px 10px;
+  }
+  .location__add{
+    padding: 25px 15px 10px 15px;
+    border-bottom: 1px solid #000;
+  }
+  .location__locations {
+    height: 340px;
+    overflow-y: scroll;
+    padding: 35px 40px 10px 40px;
+    position: relative;
+    & .location__locations-list{
+      & li:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      & li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .li-location, .li-close {
+          cursor: pointer;
+        }
+        & .li-close {
+          background-color: inherit;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+.forest__body-location {
+  width: 300px;
+}

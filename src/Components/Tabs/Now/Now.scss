@@ -1,0 +1,40 @@
+.weather__temperature {
+  font-size: 70px;
+  line-height: 82px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.weather__img {
+  position: absolute;
+  left: calc(50% - 75px);
+  top: calc(50% - 75px);
+  & img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.weather__city {
+  font-size: 24px;
+  line-height: 28px;
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+  text-shadow: 1px 1px 2px #fff;
+}
+
+.weather__favorites {
+  display: block;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  background: url("../../../img/favorites.svg") no-repeat center;
+  &.active {
+    background-image: url("../../../img/favorites-black.svg");
+  }
+}
