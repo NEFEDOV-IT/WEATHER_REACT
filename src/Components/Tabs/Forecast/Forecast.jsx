@@ -1,4 +1,4 @@
-import './Forecast.scss'
+import './Forecast.css'
 import { FIRST_CITY } from "../../../helpers";
 import { ShowListForecast } from "./ShowListForecast";
 
@@ -14,7 +14,7 @@ const Forecast = ({active, dataCity, dataForecast}) => {
           </div>
 
           <div className="cloud-city-info">
-            {dataForecast?.list?.map((item, index) => {
+            {dataForecast && dataForecast.list.map((item, index) => {
               return (
                 <ShowListForecast
                   data={item}

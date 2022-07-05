@@ -1,7 +1,7 @@
 import { FormSubmit } from "../FormSubmit/FormSubmit";
 import { Tabs } from "../Tabs/Tabs";
 import { Locations } from "../Locations/Locations";
-import './Main.scss'
+import './Main.css'
 import { useState } from "react";
 
 const Main = () => {

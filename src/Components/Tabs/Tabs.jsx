@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './Tabs.scss'
+import './Tabs.css'
 import { Now } from "./Now/Now";
 import { Details } from "./Details/Details";
 import { Forecast } from "./Forecast/Forecast";

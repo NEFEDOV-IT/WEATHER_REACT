@@ -1,7 +1,7 @@
 import img from "../../../img/04n.png";
 import { dateConverter, timeConverter, URL } from "../../../helpers";
 
-const ShowListForecast = ({data, i}) => {
+const ShowListForecast = ({data}) => {
   const currentImg = URL.ICON_WEATHER + data.weather[0].icon + '.png'
 
   return (

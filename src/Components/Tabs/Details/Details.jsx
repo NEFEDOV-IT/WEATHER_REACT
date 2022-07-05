@@ -1,4 +1,4 @@
-import './Details.scss'
+import './Details.css'
 import { FIRST_CITY, timeConverter } from "../../../helpers";
 
 const Details = ({active, dataCity}) => {

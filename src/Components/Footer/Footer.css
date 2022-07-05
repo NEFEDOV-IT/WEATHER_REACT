@@ -1,0 +1,15 @@
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #0c0150d9;
+}
+footer a {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+footer a:visited {
+  color: #fff;
+}
+
+/*# sourceMappingURL=Footer.css.map */

@@ -1,4 +1,4 @@
-import './Now.scss'
+import './Now.css'
 import img from '../../../img/04d.png'
 import { FIRST_CITY, getCityForecast, getForecast, URL } from "../../../helpers";
 import { useEffect } from "react";

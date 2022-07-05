@@ -1,0 +1,39 @@
+.forest__form {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid #000;
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.forest__form .forest__input {
+  background: rgba(0, 0, 0, 0);
+  width: 90%;
+  height: 35px;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 0 5px;
+}
+.forest__form .forest__input::placeholder {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 2px 0 3px #000;
+}
+@media screen and (max-width: 620px) {
+  .forest__form .forest__input {
+    width: 80%;
+  }
+  .forest__form .forest__input::placeholder {
+    font-size: 14px;
+  }
+}
+.forest__form .button__search {
+  background: url("../../img/search.svg") no-repeat;
+  display: block;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=FormSubmit.css.map */

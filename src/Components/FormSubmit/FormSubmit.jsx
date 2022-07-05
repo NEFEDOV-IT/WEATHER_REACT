@@ -1,4 +1,4 @@
-import './FormSubmit.scss'
+import './FormSubmit.css'
 import { getCityForecast, getForecast } from "../../helpers";
 import { useState } from "react";
 

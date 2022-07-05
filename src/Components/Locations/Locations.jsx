@@ -1,4 +1,4 @@
-import './Locations.scss'
+import './Locations.css'
 import { ShowFavouriteCities } from "./ShowFavouriteCities";
 
 const Locations = ({setFavouriteCities, favouriteCities, setDataCity, setDataForecast}) => {
@@ -10,7 +10,7 @@ const Locations = ({setFavouriteCities, favouriteCities, setDataCity, setDataFor
       </div>
       <div className="location__locations">
         <ul className="location__locations-list">
-          {favouriteCities?.map((city, index) => {
+          {favouriteCities && favouriteCities.map((city, index) => {
             return <ShowFavouriteCities
               key={index}
               city={city}
