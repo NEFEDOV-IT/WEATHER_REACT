@@ -1,8 +1,10 @@
 import './Forecast.css'
-import { FIRST_CITY } from "../../../helpers";
 import { ShowListForecast } from "./ShowListForecast";
+import { useSelector } from "react-redux";
 
-const Forecast = ({active, dataCity, dataForecast}) => {
+const Forecast = ({active}) => {
+  const currentCity = useSelector(state => state.city.city)
+  const dataForecast = useSelector(state => state.data.dataForecast)
 
   return (
     <>
@@ -10,16 +12,15 @@ const Forecast = ({active, dataCity, dataForecast}) => {
         <div className="info__city-cloud">
 
           <div className="cloud-city _city">
-            {dataCity ? dataCity.name : FIRST_CITY.name}
+            {currentCity}
           </div>
 
           <div className="cloud-city-info">
-            {dataForecast && dataForecast.list.map((item, index) => {
+            {dataForecast && dataForecast?.list?.map((item, index) => {
               return (
                 <ShowListForecast
                   data={item}
                   key={index}
-                  i={index}
                 />
               )
             })}

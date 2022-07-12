@@ -5,8 +5,8 @@ import { Details } from "./Details/Details";
 import { Forecast } from "./Forecast/Forecast";
 import { NavigationTab } from "./NavigationTab/NavigationTab";
 
-const Tabs = ({dataCity, dataForecast, setFavouriteCities, favouriteCities, setDataCity, setDataForecast}) => {
-  const [active, setActive] = useState('Now')
+const Tabs = () => {
+  const [activeTab, setActiveTab] = useState('Now')
 
   return (
     <div className="forest__body-weather">
@@ -14,27 +14,19 @@ const Tabs = ({dataCity, dataForecast, setFavouriteCities, favouriteCities, setD
         <div className="tabs-block__body">
 
           <Now
-            active={active}
-            dataCity={dataCity}
-            setFavouriteCities={setFavouriteCities}
-            favouriteCities={favouriteCities}
-            setDataCity={setDataCity}
-            setDataForecast={setDataForecast}
+            activeTab={activeTab}
           />
           <Details
-            active={active}
-            dataCity={dataCity}
+            active={activeTab}
           />
           <Forecast
-            active={active}
-            dataForecast={dataForecast}
-            dataCity={dataCity}
+            active={activeTab}
           />
         </div>
 
         <NavigationTab
-          active={active}
-          setActive={setActive}
+          active={activeTab}
+          setActive={setActiveTab}
         />
       </div>
     </div>

@@ -1,38 +1,43 @@
 import './Details.css'
-import { FIRST_CITY, timeConverter } from "../../../helpers";
+import { timeConverter } from "../../../helpers";
+import { useSelector } from "react-redux";
 
-const Details = ({active, dataCity}) => {
+const Details = ({active}) => {
+  const currentCity = useSelector(state => state.city.city)
+  const currentTemp = useSelector(state => state.city.temp)
+  const dataCity = useSelector(state => state.data.dataCity)
+
   return (
     <>
       <div className={active === 'Details' ? "tabs-block__block tabs-block active" : 'tabs-block__block tabs-block'}>
         <div className="city__body">
           <div className="city _city">
-            {dataCity.name || FIRST_CITY.name}
+            {currentCity}
           </div>
           <ul className="city__info">
             <li className="temperature">
               Temperature: <span className="city__temperature">
-              {dataCity ? Math.round(dataCity.main.temp) : FIRST_CITY.temp}
+              {Math.round(dataCity?.main?.temp) || currentTemp}
             </span>°
             </li>
             <li className="feels">
               Feels like: <span className="feels__like">
-              {dataCity ? Math.round(dataCity.main.feels_like) : 10}
+              {Math.round(dataCity?.main?.feels_like) || 10}
             </span>°
             </li>
             <li className="weather">
               Weather: <span className="city__weather">
-               {dataCity ? dataCity.weather[0].main : 'Clouds'}
+               {dataCity.main ? dataCity.weather[0].main : 'Clouds'}
             </span>
             </li>
             <li className="sunrise">
               Sunrise: <span className="city__sunrise">
-              {dataCity ? timeConverter(dataCity.sys.sunrise) : '03:21'}
+              {dataCity.sys ? timeConverter(dataCity.sys.sunrise) : '03:21'}
             </span>
             </li>
             <li className="sunset">
               Sunset: <span className="city__sunset">
-              {dataCity ? timeConverter(dataCity.sys.sunset) : '18:54'}
+              {dataCity.sys ? timeConverter(dataCity.sys.sunset) : '18:54'}
             </span>
             </li>
           </ul>

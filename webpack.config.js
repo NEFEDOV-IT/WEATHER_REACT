@@ -43,10 +43,11 @@ module.exports = {
   resolve: { extensions: ["*", ".js", ".jsx"],
     alias: {
       images: path.resolve(__dirname, 'dist/img/'),
-    },},
+    },
+  },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "dist/",
+    publicPath: "/dist/",
     filename: "bundle.js"
   },
   devServer: {

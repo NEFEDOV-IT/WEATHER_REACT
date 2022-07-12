@@ -17,6 +17,7 @@
 }
 
 .weather__city {
+  max-width: 230px;
   font-size: 24px;
   line-height: 28px;
   position: absolute;

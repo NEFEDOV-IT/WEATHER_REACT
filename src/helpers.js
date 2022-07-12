@@ -1,8 +1,3 @@
-const FIRST_CITY = {
-  name: 'Nizhny Novgorod',
-  temp: 7,
-}
-
 const URL = {
   SERVER: 'https://api.openweathermap.org/data/2.5/weather',
   APIKEY: '9ef705670e05a7f36d295b686608964c\n&units=metric',
@@ -29,24 +24,28 @@ function getUrl(url, cityName) {
   return `${url}?q=${cityName}&appid=${URL.APIKEY}`
 }
 
-async function getCityForecast(cityName) {
+async function getForecast(url, cityName) {
   try {
-    const response = await fetch(getUrl(URL.SERVER, cityName))
+    const response = await fetch(getUrl(url, cityName))
     return await response.json()
   } catch (e) {
     alert(e.message)
   }
 }
 
-async function getForecast(cityName) {
-  try {
-    const response = await fetch(getUrl(URL.SERVER_FORECAST, cityName))
-    return await response.json()
-  } catch (e) {
-    alert(e.message)
-  }
-}
+// function deleteAllCookies() {
+//   const cookies = document.cookie.split(";");
+//
+//   for (let i = 0; i < cookies.length; i++) {
+//     const cookie = cookies[i];
+//     const eqPos = cookie.indexOf("=");
+//     const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+//     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+//   }
+// }
 
-export { URL, dateConverter, timeConverter, FIRST_CITY, getCityForecast, getForecast }
+// deleteAllCookies()
+
+export { URL, dateConverter, timeConverter, getForecast, getUrl }
 
 

@@ -1,77 +1,69 @@
 import './Now.css'
 import img from '../../../img/04d.png'
-import { FIRST_CITY, getCityForecast, getForecast, URL } from "../../../helpers";
+import { URL } from "../../../helpers";
 import { useEffect } from "react";
 import JsCookie from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { addCity, removeFavouriteCity, showCities, showCity } from "../../../store/actions";
+import { fetchDataCity } from "../../../store/asyncActions";
 
-const Now = ({
-               active,
-               dataCity,
-               setFavouriteCities,
-               favouriteCities,
-               setDataCity,
-               setDataForecast
-             }) => {
+const Now = ({activeTab}) => {
 
   useEffect(() => {
     if (JsCookie.get('arrayCity')) {
       const result = JSON.parse(JsCookie.get('arrayCity'))
-      setFavouriteCities(result)
+      dispatch(showCities(result))
     }
   }, [])
 
   useEffect(() => {
     if (JsCookie.get('city')) {
       const currentCity = JSON.parse(JsCookie.get('city'))
-
-      async function fetchData(currentCity) {
-        const data = await getCityForecast(currentCity)
-        const dataForecast = await getForecast(currentCity)
-        setDataCity(data)
-        setDataForecast(dataForecast)
-      }
-
-      fetchData(currentCity)
+      dispatch(showCity(currentCity))
+      dispatch(fetchDataCity(currentCity, URL.SERVER))
     }
   }, [])
 
-  const currentImage = dataCity ? `${URL.ICON_WEATHER + dataCity.weather[0].icon + '@4x.png'}` : img
-  const isFavourite = favouriteCities.includes(dataCity.name || FIRST_CITY.name)
+  const dataCity = useSelector(state => state.data.dataCity)
+  const currentCity = useSelector(state => state.city.city)
+  const currentTemp = useSelector(state => state.city.temp)
+  const cities = useSelector(state => state.city.cities)
+  const dispatch = useDispatch()
 
-  function addFavouriteCity(e) {
-    const checkCity = favouriteCities.includes(dataCity?.name || e.target.value)
-    if (checkCity) {
-      const result = favouriteCities.filter(city => city !== e.target.value)
+  const currentImage = dataCity.weather ? `${URL.ICON_WEATHER + dataCity.weather[0].icon + '@4x.png'}` : img
+  const isFavourite = cities.includes(currentCity)
+
+  function addFavouriteCity() {
+    if (isFavourite) {
+      const result = cities.filter(city => city !== currentCity)
+      dispatch(removeFavouriteCity(currentCity))
+      dispatch(showCity(result[0] || currentCity))
+      JsCookie.set('city', JSON.stringify(result[0] || currentCity))
       JsCookie.set('arrayCity', JSON.stringify(result))
-      JsCookie.set('city', JSON.stringify(result[0] || FIRST_CITY.name))
-      setFavouriteCities(result)
-    } else if (dataCity) {
-      setFavouriteCities([...favouriteCities, dataCity.name])
-      JsCookie.set('city', JSON.stringify(dataCity.name))
-      JsCookie.set('arrayCity', JSON.stringify([...favouriteCities, dataCity.name]))
     } else {
-      setFavouriteCities([...favouriteCities, FIRST_CITY.name])
-      JsCookie.set('city', JSON.stringify(FIRST_CITY.name))
-      JsCookie.set('arrayCity', JSON.stringify([...favouriteCities, FIRST_CITY.name]))
+      dispatch(addCity(currentCity))
+      JsCookie.set('city', JSON.stringify(currentCity))
+      JsCookie.set('arrayCity', JSON.stringify([...cities, currentCity]))
     }
   }
 
   return (
     <>
-      <div className={active === 'Now' ? "tabs-block__block tabs-block active" : 'tabs-block__block tabs-block'}>
+      <div className={activeTab === 'Now' ? "tabs-block__block tabs-block active" : 'tabs-block__block tabs-block'}>
         <div className="weather__temperature">
           <span className="city__temperature">
-            {dataCity ? Math.round(dataCity.main.temp) : FIRST_CITY.temp}
+            {Math.round(dataCity?.main?.temp) || currentTemp}
           </span>°
         </div>
         <div className="weather__img">
           <img className="city__weather-img" src={currentImage} alt=""/>
         </div>
         <div className="weather__city _city">
-          {dataCity.name || FIRST_CITY.name}
+          {currentCity}
         </div>
-        <button value={dataCity.name || FIRST_CITY.name} onClick={addFavouriteCity}
-             className={isFavourite ? "weather__favorites active" : "weather__favorites"}>
+        <button
+          value={currentCity} onClick={addFavouriteCity}
+          className={isFavourite ? "weather__favorites active" : "weather__favorites"}>
         </button>
       </div>
     </>

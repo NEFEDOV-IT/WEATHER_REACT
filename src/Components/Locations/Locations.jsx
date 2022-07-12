@@ -1,7 +1,9 @@
 import './Locations.css'
 import { ShowFavouriteCities } from "./ShowFavouriteCities";
+import { useSelector } from "react-redux";
 
-const Locations = ({setFavouriteCities, favouriteCities, setDataCity, setDataForecast}) => {
+const Locations = () => {
+  const cities = useSelector(state => state.city.cities)
 
   return (
     <div className="forest__body-location">
@@ -10,14 +12,10 @@ const Locations = ({setFavouriteCities, favouriteCities, setDataCity, setDataFor
       </div>
       <div className="location__locations">
         <ul className="location__locations-list">
-          {favouriteCities && favouriteCities.map((city, index) => {
+          {cities && cities.map((city, index) => {
             return <ShowFavouriteCities
               key={index}
               city={city}
-              setFavouriteCities={setFavouriteCities}
-              favouriteCities={favouriteCities}
-              setDataCity={setDataCity}
-              setDataForecast={setDataForecast}
             />
           })}
         </ul>

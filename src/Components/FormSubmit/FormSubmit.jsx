@@ -1,35 +1,40 @@
 import './FormSubmit.css'
-import { getCityForecast, getForecast } from "../../helpers";
+import { getForecast, URL } from "../../helpers";
 import { useState } from "react";
+import { showCity } from "../../store/actions";
+import { useDispatch } from "react-redux";
+import { fetchDataCity, fetchDataForecast } from "../../store/asyncActions";
 
-const FormSubmit = ({city, setCity, setDataCity, setDataForecast}) => {
+const FormSubmit = () => {
   const [error, setError] = useState(false)
+  const [city, setCity] = useState('')
+  const dispatch = useDispatch()
 
   function saveCity(e) {
     setCity(e.target.value)
   }
 
-  async function HandleSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault()
-    const isEmptyCity = /^[а-яА-Яa-zA-Z- ]+$/.test(city.trim())
-    if (!isEmptyCity) {
+    const isNotEmptyCity = /^[а-яА-Яa-zA-Z- ]+$/.test(city.trim())
+    const currentCity = city[0].toUpperCase() + city.slice(1)
+
+    if (!isNotEmptyCity) {
       setError(true)
       setCity('')
     } else {
       try {
-        const data = await getCityForecast(city)
-        const dataForecast = await getForecast(city)
-        if (data.cod === '404') {
-          alert(data.message)
-          setError(true)
-          setCity('')
-        } else {
-          setError(false)
-          setDataCity(data)
-          setDataForecast(dataForecast)
-          setCity('')
+        const data = await getForecast(URL.SERVER, city)
+        if (error) setError(false)
+        if (data.cod !== '404') {
+          dispatch(showCity(currentCity))
+          dispatch(fetchDataCity(city, URL.SERVER))
+          dispatch(fetchDataForecast(city, URL.SERVER_FORECAST))
         }
+        setCity('')
       } catch (e) {
+        setError(true)
+        setCity('')
         alert(e.message)
       }
     }
@@ -37,7 +42,7 @@ const FormSubmit = ({city, setCity, setDataCity, setDataForecast}) => {
 
   return (
     <>
-      <form onSubmit={HandleSubmit} className="forest__form">
+      <form onSubmit={formSubmit} className="forest__form">
         <label htmlFor="input_id"></label>
         <input value={city} onChange={saveCity} placeholder="Please enter the city" id="input_id" type="text"
                className={error ? "forest__input error" : "forest__input"}/>
