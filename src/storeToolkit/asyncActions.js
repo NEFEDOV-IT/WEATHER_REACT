@@ -1,5 +1,6 @@
-import { addDataCity, addDataForecast } from "./actions";
 import { getUrl, URL } from "../helpers";
+import { addDataCity, addDataForecast } from "./weatherDataSlice";
+
 
 const fetchDataCity = (cityName) => {
   return dispatch => {

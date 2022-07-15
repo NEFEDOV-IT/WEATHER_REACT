@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { Provider } from 'react-redux'
 import './index.css'
-import { weather } from "./store";
+import { store } from "./storeToolkit";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={weather}>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>

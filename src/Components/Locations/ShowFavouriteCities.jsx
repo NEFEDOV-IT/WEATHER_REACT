@@ -1,8 +1,8 @@
 import { URL } from "../../helpers";
 import JsCookie from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavouriteCity, showCity } from "../../store/actions";
-import { fetchDataCity, fetchDataForecast } from "../../store/asyncActions";
+import { fetchDataCity, fetchDataForecast } from "../../storeToolkit/asyncActions";
+import { removeFavouriteCity, showCity } from "../../storeToolkit/weatherCitiesSlice";
 
 const ShowFavouriteCities = ({city}) => {
 

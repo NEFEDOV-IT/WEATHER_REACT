@@ -4,8 +4,8 @@ import { URL } from "../../../helpers";
 import { useEffect } from "react";
 import JsCookie from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { addCity, removeFavouriteCity, showCities, showCity } from "../../../store/actions";
-import { fetchDataCity } from "../../../store/asyncActions";
+import { addCity, removeFavouriteCity, showCities, showCity } from "../../../storeToolkit/weatherCitiesSlice";
+import { fetchDataCity, fetchDataForecast } from "../../../storeToolkit/asyncActions";
 
 const Now = ({activeTab}) => {
 
@@ -21,6 +21,7 @@ const Now = ({activeTab}) => {
       const currentCity = JSON.parse(JsCookie.get('city'))
       dispatch(showCity(currentCity))
       dispatch(fetchDataCity(currentCity, URL.SERVER))
+      dispatch(fetchDataForecast(currentCity, URL.SERVER_FORECAST))
     }
   }, [])
 
