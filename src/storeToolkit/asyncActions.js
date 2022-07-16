@@ -1,14 +1,15 @@
 import { getUrl, URL } from "../helpers";
-import { addDataCity, addDataForecast } from "./weatherDataSlice";
+import { addDataCity, addDataForecast, setIsFetching } from "./weatherDataSlice";
 
 
 const fetchDataCity = (cityName) => {
   return dispatch => {
+    dispatch(setIsFetching(true))
     fetch(getUrl(URL.SERVER, cityName))
       .then(response => response.json())
-      .then(data => {
-        dispatch(addDataCity(data))
-      })
+      .then(data => {dispatch(addDataCity(data))})
+      .then(() => dispatch(setIsFetching(false)))
+      .catch(e => console.log(e.message))
   }
 }
 
@@ -16,9 +17,8 @@ const fetchDataForecast = (cityName) => {
   return dispatch => {
     fetch(getUrl(URL.SERVER_FORECAST, cityName))
       .then(response => response.json())
-      .then(data => {
-        dispatch(addDataForecast(data))
-      })
+      .then(data => {dispatch(addDataForecast(data))})
+      .catch(e => console.log(e.message))
   }
 }
 

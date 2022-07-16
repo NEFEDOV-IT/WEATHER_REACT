@@ -40,4 +40,43 @@
   background-image: url("../../../img/favorites-black.svg");
 }
 
+.fetch__animation {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.fetch__animation::before, .fetch__animation::after {
+  content: "";
+  position: absolute;
+  top: 120px;
+  left: 35px;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  animation: rotate 1s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+.fetch__animation::before {
+  background-color: rgba(12, 1, 80, 0.8509803922);
+}
+.fetch__animation::after {
+  background-color: #ff0000;
+  animation-delay: 0.5s;
+}
+
+@keyframes rotate {
+  0%, 100% {
+    left: 135px;
+  }
+  25% {
+    transform: scale(0.3);
+  }
+  50% {
+    left: 35px;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /*# sourceMappingURL=Now.css.map */
