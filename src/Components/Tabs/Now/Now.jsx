@@ -1,13 +1,14 @@
 import './Now.css'
 import img from '../../../img/04d.png'
-import { URL } from "../../../helpers";
+import { URL } from "../../../utils/helpers";
 import { useEffect } from "react";
 import JsCookie from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { addCity, removeFavouriteCity, showCities, showCity } from "../../../storeToolkit/weatherCitiesSlice";
-import { fetchDataCity, fetchDataForecast } from "../../../storeToolkit/asyncActions";
+import { addCity, removeFavouriteCity, showCities, showCity } from "../../../store/weatherCitiesSlice";
+import { fetchDataCity, fetchDataForecast } from "../../../store/asyncActions";
+import { getCities, getCurrentCity, getCurrentTemp, getDataCity, getIsFetching } from "../../../utils/selectors";
 
-const Now = ({activeTab}) => {
+const Now = ({ activeTab }) => {
 
   useEffect(() => {
     if (JsCookie.get('arrayCity')) {
@@ -25,11 +26,11 @@ const Now = ({activeTab}) => {
     }
   }, [])
 
-  const dataCity = useSelector(state => state.data.dataCity)
-  const currentCity = useSelector(state => state.city.city)
-  const currentTemp = useSelector(state => state.city.temp)
-  const cities = useSelector(state => state.city.cities)
-  const isFetching = useSelector(state => state.data.isFetching)
+  const dataCity = useSelector(getDataCity)
+  const currentCity = useSelector(getCurrentCity)
+  const currentTemp = useSelector(getCurrentTemp)
+  const cities = useSelector(getCities)
+  const isFetching = useSelector(getIsFetching)
   const dispatch = useDispatch()
 
   const currentImage = dataCity.weather ? `${URL.ICON_WEATHER + dataCity.weather[0].icon + '@4x.png'}` : img

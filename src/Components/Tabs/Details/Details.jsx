@@ -1,11 +1,12 @@
 import './Details.css'
-import { timeConverter } from "../../../helpers";
+import { timeConverter } from "../../../utils/helpers";
 import { useSelector } from "react-redux";
+import { getCurrentCity, getCurrentTemp, getDataCity } from "../../../utils/selectors";
 
-const Details = ({active}) => {
-  const currentCity = useSelector(state => state.city.city)
-  const currentTemp = useSelector(state => state.city.temp)
-  const dataCity = useSelector(state => state.data.dataCity)
+const Details = ({ active }) => {
+  const currentCity = useSelector(getCurrentCity)
+  const currentTemp = useSelector(getCurrentTemp)
+  const dataCity = useSelector(getDataCity)
 
   return (
     <>

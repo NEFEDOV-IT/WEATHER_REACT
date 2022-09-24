@@ -1,4 +1,4 @@
-const NavigationTab = ({active, setActive}) => {
+const NavigationTab = ({ active, setActive }) => {
   return (
     <div className="tabs-block__nav">
       <div className={active === 'Now' ?

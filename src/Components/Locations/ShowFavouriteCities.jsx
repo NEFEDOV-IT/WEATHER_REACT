@@ -1,13 +1,14 @@
-import { URL } from "../../helpers";
+import { URL } from "../../utils/helpers";
 import JsCookie from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataCity, fetchDataForecast } from "../../storeToolkit/asyncActions";
-import { removeFavouriteCity, showCity } from "../../storeToolkit/weatherCitiesSlice";
+import { fetchDataCity, fetchDataForecast } from "../../store/asyncActions";
+import { removeFavouriteCity, showCity } from "../../store/weatherCitiesSlice";
+import { getCities, getCurrentCity } from "../../utils/selectors";
 
 const ShowFavouriteCities = ({city}) => {
 
-  const currentCity = useSelector(state => state.city.city)
-  const cities = useSelector(state => state.city.cities)
+  const currentCity = useSelector(getCurrentCity)
+  const cities = useSelector(getCities)
   const dispatch = useDispatch()
 
   function removeCity() {

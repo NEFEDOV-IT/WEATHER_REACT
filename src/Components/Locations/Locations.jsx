@@ -1,9 +1,10 @@
 import './Locations.css'
 import { ShowFavouriteCities } from "./ShowFavouriteCities";
 import { useSelector } from "react-redux";
+import { getCities } from "../../utils/selectors";
 
 const Locations = () => {
-  const cities = useSelector(state => state.city.cities)
+  const cities = useSelector(getCities)
 
   return (
     <div className="forest__body-location">

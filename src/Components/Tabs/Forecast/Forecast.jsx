@@ -1,10 +1,11 @@
 import './Forecast.css'
 import { ShowListForecast } from "./ShowListForecast";
 import { useSelector } from "react-redux";
+import { getCurrentCity, getDataForecast } from "../../../utils/selectors";
 
-const Forecast = ({active}) => {
-  const currentCity = useSelector(state => state.city.city)
-  const dataForecast = useSelector(state => state.data.dataForecast)
+const Forecast = ({ active }) => {
+  const currentCity = useSelector(getCurrentCity)
+  const dataForecast = useSelector(getDataForecast)
 
   return (
     <>

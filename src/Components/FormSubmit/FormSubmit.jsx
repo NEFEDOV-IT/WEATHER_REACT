@@ -1,9 +1,9 @@
 import './FormSubmit.css'
-import { getForecast, URL } from "../../helpers";
+import { getForecast, URL } from "../../utils/helpers";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchDataCity, fetchDataForecast } from "../../storeToolkit/asyncActions";
-import { showCity } from "../../storeToolkit/weatherCitiesSlice";
+import { fetchDataCity, fetchDataForecast } from "../../store/asyncActions";
+import { showCity } from "../../store/weatherCitiesSlice";
 
 const FormSubmit = () => {
   const [error, setError] = useState(false)
